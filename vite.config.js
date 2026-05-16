@@ -7,5 +7,5 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.jsx',
-  },base: "/student-course-registration/",
+  },base: '/student-course-registra/',
 });
