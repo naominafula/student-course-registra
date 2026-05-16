@@ -27,6 +27,7 @@ export default function Dashboard() {
 
     if (!user) {
       clearTimer = setTimeout(() => {
+        console.debug("Dashboard: clearing registered courses (no user)");
         setRegisteredCount(0);
         setRegisteredCourses([]);
       }, 600);
@@ -35,6 +36,20 @@ export default function Dashboard() {
     }
 
     const docRef = doc(db, "registrations", user.uid);
+    // load cached courses from localStorage immediately for a stable UI
+    try {
+      const key = `registrations_${user.uid}`;
+      const cached = localStorage.getItem(key);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        setRegisteredCourses(parsed);
+        setRegisteredCount(parsed.length || 0);
+        console.debug("Dashboard: loaded cached courses from localStorage", parsed);
+      }
+    } catch (e) {
+      console.debug("Dashboard: failed to read cached courses", e);
+    }
+
     const unsubscribe = onSnapshot(
       docRef,
       (docSnap) => {
@@ -47,11 +62,25 @@ export default function Dashboard() {
             return course;
           });
 
+          console.debug("Dashboard: snapshot update", normalizedCourses);
           setRegisteredCourses(normalizedCourses);
           setRegisteredCount(normalizedCourses.length);
+
+          // cache for quick UI recovery if snapshot briefly goes empty
+          try {
+            localStorage.setItem(`registrations_${user.uid}`, JSON.stringify(normalizedCourses));
+          } catch (e) {
+            console.debug("Dashboard: failed to write cache", e);
+          }
         } else {
+          console.debug("Dashboard: snapshot exists() === false");
           setRegisteredCount(0);
           setRegisteredCourses([]);
+          try {
+            localStorage.removeItem(`registrations_${user.uid}`);
+          } catch (e) {
+            /* ignore */
+          }
         }
       },
       (error) => {
