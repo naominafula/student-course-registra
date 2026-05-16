@@ -1,10 +1,10 @@
 {
+  "homepage": "https://github.com/naominafula/student-course-registra.git",
   "name": "student-course-registration",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "homepage": "https://github.com/naominafula/student-course-registra.git",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -28,6 +28,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.6.0",
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^6.3.0",
     "jsdom": "^24.0.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
