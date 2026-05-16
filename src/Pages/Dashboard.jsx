@@ -22,32 +22,48 @@ export default function Dashboard() {
   const [registeredCourses, setRegisteredCourses] = useState([]);
 
   useEffect(() => {
+    // Debounce clearing state to avoid brief auth flickers wiping the UI
+    let clearTimer;
+
     if (!user) {
-      setRegisteredCount(0);
-      setRegisteredCourses([]);
-      return;
+      clearTimer = setTimeout(() => {
+        setRegisteredCount(0);
+        setRegisteredCourses([]);
+      }, 600);
+
+      return () => clearTimeout(clearTimer);
     }
 
     const docRef = doc(db, "registrations", user.uid);
-    const unsubscribe = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const rawCourses = docSnap.data().courses || [];
-        const normalizedCourses = rawCourses.map(course => {
-          if (typeof course === "string") {
-            return COURSE_MAP[course] || { id: course, name: course };
-          }
-          return course;
-        });
+    const unsubscribe = onSnapshot(
+      docRef,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const rawCourses = docSnap.data().courses || [];
+          const normalizedCourses = rawCourses.map((course) => {
+            if (typeof course === "string") {
+              return COURSE_MAP[course] || { id: course, name: course };
+            }
+            return course;
+          });
 
-        setRegisteredCourses(normalizedCourses);
-        setRegisteredCount(normalizedCourses.length);
-      } else {
-        setRegisteredCount(0);
-        setRegisteredCourses([]);
+          setRegisteredCourses(normalizedCourses);
+          setRegisteredCount(normalizedCourses.length);
+        } else {
+          setRegisteredCount(0);
+          setRegisteredCourses([]);
+        }
+      },
+      (error) => {
+        // keep previous state on transient snapshot errors and log for diagnosis
+        console.error("registrations snapshot error:", error);
       }
-    });
+    );
 
-    return () => unsubscribe();
+    return () => {
+      if (clearTimer) clearTimeout(clearTimer);
+      unsubscribe();
+    };
   }, [user]);
 
   return (

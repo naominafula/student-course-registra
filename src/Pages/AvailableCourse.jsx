@@ -51,7 +51,8 @@ export default function AvailableCourses() {
       : [...registeredCourses, COURSE_MAP[courseId] || { id: courseId, name: courseId }];
 
     setRegisteredCourses(updated);
-    await setDoc(doc(db, "registrations", user.uid), { courses: updated });
+    // write with merge so we don't accidentally wipe other fields on the doc
+    await setDoc(doc(db, "registrations", user.uid), { courses: updated }, { merge: true });
   };
 
   return (
