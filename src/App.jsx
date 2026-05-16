@@ -9,7 +9,7 @@ import AvailableCourse from "./Pages/AvailableCourse";
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/student-course-registra">
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
