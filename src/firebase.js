@@ -4,31 +4,20 @@ import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyC3sMjQCZD-DMhBmvnSyD8uFJ4SkxJNGFY",
+  authDomain: "student-course-registar.firebaseapp.com",
+  projectId: "student-course-registar",
+  storageBucket: "student-course-registar.firebasestorage.app",
+  messagingSenderId: "766761680570",
+  appId: "1:766761680570:web:f8f5f2b1bbc6e01374cc83",
+  measurementId: "G-JGZFDG0TX3"
 };
 
-const measurementId = import.meta.env.VITE_FIREBASE_MEASUREMENT_ID;
-if (measurementId) {
-  firebaseConfig.measurementId = measurementId;
-}
-
-export const isFirebaseConfigured = [
-  firebaseConfig.apiKey,
-  firebaseConfig.authDomain,
-  firebaseConfig.projectId,
-  firebaseConfig.storageBucket,
-  firebaseConfig.messagingSenderId,
-  firebaseConfig.appId,
-].every(Boolean)
+export const isFirebaseConfigured = true;
 
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
-export const analytics = measurementId ? getAnalytics(app) : null;
+export const analytics = getAnalytics(app);
