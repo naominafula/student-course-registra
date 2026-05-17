@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext"; 
 import ProtectedRoute from "./components/protectedRoute";
 import Navbar from "./components/Navbar";
 import Login from "./Pages/Login";
@@ -9,7 +9,7 @@ import AvailableCourse from "./Pages/AvailableCourse";
 export default function App() {
   return (
     <AuthProvider>
-      <HashRouter basename="/student-course-registra">
+      <HashRouter>
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
