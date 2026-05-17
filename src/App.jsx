@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/protectedRoute";
 import Navbar from "./components/Navbar";
@@ -9,7 +9,7 @@ import AvailableCourse from "./Pages/AvailableCourse";
 export default function App() {
   return (
     <AuthProvider>
-      <HashRouter basename="/student-course-registra">
+      <BrowserRouter basename="/student-course-registra">
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
@@ -34,7 +34,7 @@ export default function App() {
           {/* Catch-all fallback route to prevent dead space screens */}
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
