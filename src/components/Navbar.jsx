@@ -45,12 +45,12 @@ export default function Navbar() {
               <span className="hidden sm:block">Registration Portal</span>
             </div>
 
-            {/* Desktop Links */}
+            
             <div className="hidden md:flex items-center gap-8 font-medium text-gray-600">
               <NavLinks />
             </div>
 
-            {/* User & Mobile Menu Toggle */}
+            
             <div className="flex items-center gap-4">
               <div className="hidden sm:flex items-center gap-3 pr-4 border-r border-gray-200">
                 <img 
@@ -68,7 +68,7 @@ export default function Navbar() {
                 <LogOut size={20} />
               </button>
 
-              {/* Mobile Menu Button */}
+              
               <button 
                 className="md:hidden text-gray-600"
                 onClick={() => setIsOpen(!isOpen)}
@@ -79,7 +79,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        
         {isOpen && (
           <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 flex flex-col gap-4 text-gray-600 font-medium animate-in slide-in-from-top duration-200">
             <NavLinks />
@@ -95,7 +95,6 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* This Outlet is where your Dashboard or Courses pages will render */}
       <main className="max-w-7xl mx-auto py-6">
         <Outlet />
       </main>
