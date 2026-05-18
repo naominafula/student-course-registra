@@ -51,12 +51,12 @@ export default function AvailableCourses() {
       : [...registeredCourses, COURSE_MAP[courseId] || { id: courseId, name: courseId }];
 
     setRegisteredCourses(updated);
-    // write with merge so we don't accidentally wipe other fields on the doc
+    
     await setDoc(doc(db, "registrations", user.uid), { courses: updated }, { merge: true });
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-6 w-full">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Available Registrations</h2>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {COURSE_LIST.map((course) => {

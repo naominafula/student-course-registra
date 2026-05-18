@@ -22,7 +22,7 @@ export default function Dashboard() {
   const [registeredCourses, setRegisteredCourses] = useState([]);
 
   useEffect(() => {
-    // Debounce clearing state to avoid brief auth flickers wiping the UI
+    
     let clearTimer;
 
     if (!user) {
@@ -36,7 +36,7 @@ export default function Dashboard() {
     }
 
     const docRef = doc(db, "registrations", user.uid);
-    // load cached courses from localStorage immediately for a stable UI
+    
     try {
       const key = `registrations_${user.uid}`;
       const cached = localStorage.getItem(key);
@@ -66,7 +66,7 @@ export default function Dashboard() {
           setRegisteredCourses(normalizedCourses);
           setRegisteredCount(normalizedCourses.length);
 
-          // cache for quick UI recovery if snapshot briefly goes empty
+          
           try {
             localStorage.setItem(`registrations_${user.uid}`, JSON.stringify(normalizedCourses));
           } catch (e) {
@@ -79,12 +79,12 @@ export default function Dashboard() {
           try {
             localStorage.removeItem(`registrations_${user.uid}`);
           } catch (e) {
-            /* ignore */
+            
           }
         }
       },
       (error) => {
-        // keep previous state on transient snapshot errors and log for diagnosis
+        
         console.error("registrations snapshot error:", error);
       }
     );
@@ -96,7 +96,7 @@ export default function Dashboard() {
   }, [user]);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+    <div className="px-4 sm:px-6 lg:px-8 w-full space-y-8">
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center gap-4 justify-between">
         <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
           <img src={user?.photoURL} alt="Profile" className="w-16 h-16 rounded-full border-2 border-indigo-500" />
