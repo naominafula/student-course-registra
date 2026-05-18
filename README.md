@@ -1,16 +1,114 @@
-# React + Vite
+## Student Course Registration System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React application for managing student course registration. Users can browse available courses, register students, and manage enrollment data dynamically.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+Live Site: https://naominafula.github.io/student-course-registra/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## GitHub Repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Repository: https://github.com/naominafula/student-course-registra
+
+---
+
+## Features
+
+- View available courses
+- Register students into courses
+- Dynamic UI updates using React state
+- Responsive design for mobile and desktop
+- React Router navigation
+- Form handling and validation
+- Persistent data using db.json / API simulation
+- Clean and user-friendly interface
+
+---
+
+## Technologies Used
+
+- React
+- React Router DOM
+- JavaScript
+- Tailwind CSS
+- JSON Server
+- Axios
+- GitHub Pages
+
+---
+
+## Installation & Setup
+
+### Clone Repository
+
+```bash
+git clone https://github.com/naominafula/student-course-registra.git
+cd student-course-registra
+npm install
+```
+
+### Running the Project
+
+```bash
+npm run dev
+```
+
+### Start JSON Server
+
+```bash
+npx json-server --watch db.json --port 3001
+```
+
+
+
+## Deployment
+
+This project is deployed using:
+
+- GitHub Pages
+- GitHub Actions
+
+---
+
+## Future Improvements
+
+- Authentication system
+- Admin dashboard
+- Search and filtering
+- Course capacity tracking
+- Payment integration
+- Student profile management
+- Email notifications
+- Dark mode support
+- Real-time database integration with Firebase
+- Semantic Versioning
+
+### Example Release Versions
+
+- v1.0.0
+- v1.1.0
+- v2.0.0
+
+### Version Meaning
+
+- Major → Large breaking changes
+- Minor → New features
+- Patch → Bug fixes
+
+---
+
+## Author
+
+Developed by Naomi Nafula
+
+GitHub: https://github.com/naominafula/student-course-registra.git
+
+---
+
+## License
+
+This project is licensed under the MIT License.
